@@ -2,15 +2,18 @@ package fp.netflix;
 
 import java.util.Objects;
 import java.util.SortedSet;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CatalogoNetflix {
 	// Atributo
 	private SortedSet<ProduccionNetflix> producciones;
 
 	// Constructor
-	public CatalogoNetflix(SortedSet<ProduccionNetflix> producciones) {
-		this.producciones = producciones;
-	}
+	public CatalogoNetflix(Stream<ProduccionNetflix> producciones) {
+        this.producciones = producciones.collect(Collectors.toCollection(TreeSet::new));
+    }
 	
 	// Métodos
 	public SortedSet<ProduccionNetflix> getProducciones() {
