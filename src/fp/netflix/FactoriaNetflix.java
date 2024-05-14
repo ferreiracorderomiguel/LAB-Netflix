@@ -19,6 +19,7 @@ public class FactoriaNetflix {
 		try {
 			producciones = Files.readAllLines(Paths.get(rutaFichero))
 					.stream()
+					.skip(1)
 					.map(FactoriaNetflix::parse)
 					.collect(Collectors.toList());
 			res = new CatalogoNetflix(producciones.stream());
@@ -42,7 +43,7 @@ public class FactoriaNetflix {
 		Double scoreIMDB = Double.parseDouble(trozos[6].trim());
 		Long popularidadIMDB = Long.parseLong(trozos[7].trim());
 		
-		return null;
+		return new ProduccionNetflix(titulo, tipo, anhoProduccion, duracion, generos, numTemporadas, scoreIMDB, popularidadIMDB);
 	}
 
 	private static Set<String> parsearGeneros(String trim) {
